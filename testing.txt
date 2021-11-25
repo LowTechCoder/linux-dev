@@ -36,7 +36,10 @@ sudo mysql -u root
 
 create database wordpress;
 #doesn't work!!`
-grant all privileges on wordpress.* to matt@localhost identified by 'qwer';
+grant all privileges on wordpress.* to matt@localhost identified by 'pw';
+GRANT ALL PRIVILEGES ON wordpress.* TO 'matt'@'localhost' IDENTIFIED BY 'pw';
+GRANT ALL ON wordpress.* TO 'matt'@'localhost' IDENTIFIED BY 'pw';
+
 flush privileges;
 exit;
 

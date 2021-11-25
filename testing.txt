@@ -18,3 +18,16 @@ php -i | grep "Loaded Configuration File"
 sudo a2dismod php8.0
 sudo a2enmod php7.4
 sudo systemctl restart apache2
+sudo nvim /var/www/html/info.php
+#add this to the file
+<?php phpinfo(); ?>
+#open this in the web browser to test the php version
+http://localhost/info.php
+
+#broken so far fixme!
+#sudo apt install phpmyadmin
+
+wget https://wordpress.org/latest.zip
+sudo apt install unzip
+sudo mkdir -p /var/www/
+sudo unzip latest.zip -d /var/www/

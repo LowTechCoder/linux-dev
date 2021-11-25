@@ -39,8 +39,40 @@ CREATE USER 'matt'@'localhost' IDENTIFIED BY 'pw';
 # use this if you type in the wrong pw
 ALTER USER 'matt'@'localhost' IDENTIFIED BY 'pw';
 GRANT ALL PRIVILEGES ON wordpress.* TO 'matt'@'localhost';
-
-
 flush privileges;
 exit;
+
+cd /var/www/wordpress/
+sudo cp wp-config-sample.php wp-config.php
+sudo nvim wp-config.php
+#Change all this:
+define('DB_NAME', 'database_name_here');
+define('DB_USER', 'username_here');
+define('DB_PASSWORD', 'password_here');
+#sudo chown www-data:www-data /var/www/wordpress/ -R # wrong! fixme!
+sudo chown www-data:www-data /var/www/html/wordpress/ -R
+sudo nvim /etc/apache2/sites-available/wordpress.conf
+#add all this
+<VirtualHost *:80>       
+        ServerName www.example.com
+        ServerAlias example.com
+
+        DocumentRoot /var/www/wordpress
+
+        #This enables .htaccess file, which is needed for WordPress Permalink to work. 
+        <Directory "/var/www/wordpress">
+             AllowOverride All
+        </Directory>
+
+        ErrorLog ${APACHE_LOG_DIR}/example.com.error.log
+        CustomLog ${APACHE_LOG_DIR}/example.com.access.log combined
+</VirtualHost>
+
+sudo a2ensite wordpress.conf
+sudo systemctl reload apache2
+
+
+
+
+
 

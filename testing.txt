@@ -35,10 +35,11 @@ sudo unzip latest.zip -d /var/www/
 sudo mysql -u root
 
 create database wordpress;
-#doesn't work!!`
-grant all privileges on wordpress.* to matt@localhost identified by 'pw';
-GRANT ALL PRIVILEGES ON wordpress.* TO 'matt'@'localhost' IDENTIFIED BY 'pw';
-GRANT ALL ON wordpress.* TO 'matt'@'localhost' IDENTIFIED BY 'pw';
+CREATE USER 'matt'@'localhost' IDENTIFIED BY 'pw';
+# use this if you type in the wrong pw
+ALTER USER 'matt'@'localhost' IDENTIFIED BY 'pw';
+GRANT ALL PRIVILEGES ON wordpress.* TO 'matt'@'localhost';
+
 
 flush privileges;
 exit;

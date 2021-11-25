@@ -25,17 +25,20 @@ sudo mysql -u root
 create database wordpress;
 CREATE USER 'MY_USER'@'localhost' IDENTIFIED BY 'MY_PW';
 # use this if you type in the wrong pw
-ALTER USER '$MY_USER'@'localhost' IDENTIFIED BY 'MY_PW';
+ALTER USER 'MY_USER'@'localhost' IDENTIFIED BY 'MY_PW';
 GRANT ALL PRIVILEGES ON wordpress.* TO 'MY_USER'@'localhost';
 flush privileges;
 exit;
 
 cd wordpress/
 sudo cp wp-config-sample.php wp-config.php
-sudo nvim wp-config.php 
+#sudo nvim wp-config.php 
 
 #Change all this:
-define('DB_NAME', 'database_name_here');
-define('DB_USER', 'username_here');
-define('DB_PASSWORD', 'password_here');
+#define('DB_NAME', 'database_name_here');
+#define('DB_USER', 'username_here');
+#define('DB_PASSWORD', 'password_here');
+sed -i 's#database_name_here#DB#g' wp-config.php
+sed -i 's#username_here#UN#g' wp-config.php
+sed -i 's#password_here#PW#g' wp-config.php
 sudo systemctl reload apache2

@@ -19,16 +19,6 @@ sudo nvim info.php
 sudo wget https://wordpress.org/latest.zip
 sudo unzip latest.zip
 sudo chown www-data:www-data /var/www/html/wordpress/ -R
-sudo mysql -u root
-
-#do mysql commands here
-create database wordpress;
-CREATE USER 'MY_USER'@'localhost' IDENTIFIED BY 'MY_PW';
-# use this if you type in the wrong pw
-ALTER USER 'MY_USER'@'localhost' IDENTIFIED BY 'MY_PW';
-GRANT ALL PRIVILEGES ON wordpress.* TO 'MY_USER'@'localhost';
-flush privileges;
-exit;
 
 cd wordpress/
 sudo cp wp-config-sample.php wp-config.php
@@ -41,4 +31,16 @@ sudo cp wp-config-sample.php wp-config.php
 sed -i 's#database_name_here#DB#g' wp-config.php
 sed -i 's#username_here#UN#g' wp-config.php
 sed -i 's#password_here#PW#g' wp-config.php
+
+sudo mysql -u root
+
+#do mysql commands here
+#   create database wordpress;
+#   CREATE USER 'MY_USER'@'localhost' IDENTIFIED BY 'MY_PW';
+# use this if you type in the wrong pw
+#   ALTER USER 'MY_USER'@'localhost' IDENTIFIED BY 'MY_PW';
+#   GRANT ALL PRIVILEGES ON wordpress.* TO 'MY_USER'@'localhost';
+#   flush privileges;
+#   exit;
+
 sudo systemctl reload apache2

@@ -31,3 +31,12 @@ wget https://wordpress.org/latest.zip
 sudo apt install unzip
 sudo mkdir -p /var/www/
 sudo unzip latest.zip -d /var/www/
+
+sudo mysql -u root
+
+create database wordpress;
+#doesn't work!!`
+grant all privileges on wordpress.* to matt@localhost identified by 'qwer';
+flush privileges;
+exit;
+

@@ -5,6 +5,7 @@ sudo apt install unzip
 sudo apt install spice-vdagent spice-webdavd
 sudo install chromium
 sudo install neovim
+sudo apt install phpmyadmin
 sudo install git
 git clone https://github.com/LowTechCoder/linux-nvim
 mkdir .config/nvim/
@@ -45,4 +46,10 @@ sudo mysql -u root
 
 sudo systemctl reload apache2
 
+sudo cp /etc/phpmyadmin/apache.conf /etc/apache2/conf-available/phpmyadmin.conf
+sudo a2enconf phpmyadmin
+sudo service apache2 restart
+
 chromium http://localhost/wordpress/wp-admin/install.php
+chromium chrome-search:http://localhost/phpmyadmin
+

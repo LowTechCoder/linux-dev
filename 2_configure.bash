@@ -21,7 +21,7 @@ sudo install phpmyadmin
 sudo mkdir temp
 sudo cd temp
 sudo wget https://wordpress.org/latest.zip
-sudo unzip latest.zip
+sudo unzip -q latest.zip
 sudo cd ..
 sudo cp -r temp/wordpress/ ./$DB
 sudo chown www-data:www-data "/var/www/html/$DB/" -R

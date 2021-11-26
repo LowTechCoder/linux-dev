@@ -34,9 +34,9 @@ sudo cp wp-config-sample.php wp-config.php
 #define('DB_NAME', 'database_name_here');
 #define('DB_USER', 'username_here');
 #define('DB_PASSWORD', 'password_here');
-sed -i "s#database_name_here#$DB#g" wp-config.php
-sed -i "s#username_here#$DB_USER#g" wp-config.php
-sed -i "s#password_here#$DB_PW#g" wp-config.php
+sudo sed -i "s#database_name_here#$DB#g" wp-config.php
+sudo sed -i "s#username_here#$DB_USER#g" wp-config.php
+sudo sed -i "s#password_here#$DB_PW#g" wp-config.php
 
 #sudo mysql -u root
 

@@ -50,8 +50,8 @@ sudo sed -i "s#password_here#$DB_PW#g" wp-config.php
 #   exit;
 
 sudo mysql -u root -Bse "create database $DB;"
-sudo mysql -u root -Bse "CREATE USER 'DB_USER'@'localhost' IDENTIFIED BY 'DB_PW';"
-sudo mysql -u root -Bse "GRANT ALL PRIVILEGES ON wordpress.* TO 'DB_USER'@'localhost';"
+sudo mysql -u root -Bse "CREATE USER '$DB_USER'@'localhost' IDENTIFIED BY '$DB_PW';"
+sudo mysql -u root -Bse "GRANT ALL PRIVILEGES ON $DB.* TO '$DB_USER'@'localhost';"
 sudo mysql -u root -Bse "flush privileges;"
 
 sudo systemctl reload apache2

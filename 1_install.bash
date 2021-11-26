@@ -1,12 +1,12 @@
 #step1
-sudo apt update
-sudo apt upgrade
-sudo apt install tasksel
-sudo apt install unzip
-sudo apt install spice-vdagent spice-webdavd
-sudo apt install chromium-browser
-sudo apt install neovim
-sudo apt install git
+sudo apt update -y
+sudo apt upgrade -y
+sudo apt install tasksel -y
+sudo apt install unzip -y
+sudo apt install spice-vdagent spice-webdavd -y
+sudo apt install chromium-browser -y
+sudo apt install neovim -y
+sudo apt install git -y
 git clone https://github.com/LowTechCoder/linux-nvim
 mkdir .config/nvim/
 cp linux-nvim/init.vim .config/nvim/

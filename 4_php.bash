@@ -2,6 +2,8 @@
 # https://www.digitalocean.com/community/tutorials/how-to-run-multiple-php-versions-on-one-server-using-apache-and-php-fpm-on-ubuntu-20-04
 read -p "Enter DB: " DB;
 echo "DB: $DB"
+read -p "Enter PHP: " PHP;
+echo "PHP: $PHP"
 read -r -p "Are these correct? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
 then

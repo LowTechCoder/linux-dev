@@ -61,5 +61,5 @@ sudo a2enconf phpmyadmin
 sudo service apache2 restart
 
 
-chromium http://localhost/wordpress/wp-admin/install.php
+chromium "http://localhost/$DB/wp-admin/install.php"
 chromium http://localhost/phpmyadmin

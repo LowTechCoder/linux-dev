@@ -19,10 +19,10 @@ sudo apt install phpmyadmin
 #sudo nvim index.html 
 #sudo nvim info.php
 sudo mkdir temp
-sudo cd temp
+cd temp
 sudo wget https://wordpress.org/latest.zip
 sudo unzip -q latest.zip
-sudo cd ..
+cd ..
 sudo cp -r temp/wordpress/ ./$DB
 sudo chown www-data:www-data "/var/www/html/$DB/" -R
 

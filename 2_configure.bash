@@ -15,6 +15,7 @@ else
     exit
 fi
 cd /var/www/html/
+sudo install phpmyadmin
 #sudo nvim index.html 
 #sudo nvim info.php
 sudo mkdir temp

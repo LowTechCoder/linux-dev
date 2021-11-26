@@ -1,9 +1,9 @@
 # switch php versions
 # https://www.digitalocean.com/community/tutorials/how-to-run-multiple-php-versions-on-one-server-using-apache-and-php-fpm-on-ubuntu-20-04
 read -p "Enter DB: " DB;
+read -p "Enter PHP: " PHPV;
 echo "DB: $DB"
-read -p "Enter PHP: " PHP;
-echo "PHP: $PHP"
+echo "PHP: $PHPV"
 read -r -p "Are these correct? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
 then
@@ -29,11 +29,11 @@ sudo sh -c 'echo "
 
     <FilesMatch \.php$>
         # From the Apache version 2.4.10 and above, use the SetHandler to run PHP as a fastCGI process server
-         SetHandler "proxy:unix:/run/php/php$PHP-fpm.sock|fcgi://localhost"
+         SetHandler "proxy:unix:/run/php/php7.4-fpm.sock|fcgi://localhost"
     </FilesMatch>
 
-     ErrorLog ${APACHE_LOG_DIR}/$DB_error.log
-     CustomLog ${APACHE_LOG_DIR}/$DB_access.log combined
+     ErrorLog $APACHE_LOG_DIR/$DB_error.log
+     CustomLog $APACHE_LOG_DIR/$DB_access.log combined
 </VirtualHost>" > /etc/apache2/sites-available/wp.conf'
 read
 sudo a2ensite $DB

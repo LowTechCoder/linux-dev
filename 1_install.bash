@@ -1,5 +1,5 @@
 #step1
-sudo apt update -y
+sudo apt update
 sudo apt upgrade -y
 sudo apt install tasksel -y
 sudo apt install unzip -y

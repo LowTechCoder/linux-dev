@@ -62,4 +62,4 @@ sudo service apache2 restart
 
 
 chromium http://localhost/wordpress/wp-admin/install.php
-chromium chrome-search:http://localhost/phpmyadmin
+chromium http://localhost/phpmyadmin

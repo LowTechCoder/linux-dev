@@ -34,6 +34,6 @@ sudo sh -c 'echo "
 
      ErrorLog ${APACHE_LOG_DIR}/$DB_error.log
      CustomLog ${APACHE_LOG_DIR}/$DB_access.log combined
-</VirtualHost>" > /etc/apache2/sites-available/$DB.conf'
+</VirtualHost>" > /etc/apache2/sites-available/wp.conf'
 sudo a2ensite $DB
 sudo systemctl restart apache2

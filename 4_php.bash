@@ -29,11 +29,11 @@ sudo sh -c 'echo "
 
     <FilesMatch \.php$>
         # From the Apache version 2.4.10 and above, use the SetHandler to run PHP as a fastCGI process server
-         SetHandler "proxy:unix:/run/php/php7.4-fpm.sock|fcgi://localhost"
+         SetHandler \"proxy:unix:/run/php/php7.4-fpm.sock|fcgi://localhost\"
     </FilesMatch>
 
-     ErrorLog $APACHE_LOG_DIR/$DB_error.log
-     CustomLog $APACHE_LOG_DIR/$DB_access.log combined
+     ErrorLog ${APACHE_LOG_DIR}/$DB_error.log
+     CustomLog ${APACHE_LOG_DIR}/$DB_access.log combined
 </VirtualHost>" > /etc/apache2/sites-available/wp.conf'
 read
 sudo a2ensite $DB

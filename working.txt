@@ -44,3 +44,5 @@ sudo mysql -u root
 #   exit;
 
 sudo systemctl reload apache2
+
+chromium http://localhost/wp-admin/install.php

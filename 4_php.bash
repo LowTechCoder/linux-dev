@@ -15,12 +15,12 @@ fi
 
 sudo sh -c 'echo "
 <VirtualHost *:80>
-     ServerAdmin admin@$DB
-     ServerName $DB
-     DocumentRoot /var/www/$DB
+     ServerAdmin admin@DB
+     ServerName DB
+     DocumentRoot /var/www/DB
      DirectoryIndex info.php
 
-     <Directory /var/www/$DB>
+     <Directory /var/www/DB>
         Options Indexes FollowSymLinks MultiViews
         AllowOverride All
         Order allow,deny
@@ -29,12 +29,16 @@ sudo sh -c 'echo "
 
     <FilesMatch \.php$>
         # From the Apache version 2.4.10 and above, use the SetHandler to run PHP as a fastCGI process server
-         SetHandler \"proxy:unix:/run/php/php7.4-fpm.sock|fcgi://localhost\"
+         SetHandler \"proxy:unix:/run/php/phpPHPV-fpm.sock|fcgi://localhost\"
     </FilesMatch>
 
-     ErrorLog ${APACHE_LOG_DIR}/$DB_error.log
-     CustomLog ${APACHE_LOG_DIR}/$DB_access.log combined
-</VirtualHost>" > /etc/apache2/sites-available/wp.conf'
+     ErrorLog \${APACHE_LOG_DIR}/DB_error.log
+     CustomLog \${APACHE_LOG_DIR}/DB_access.log combined
+</VirtualHost>" > /etc/apache2/sites-available/DB.conf'
+sudo sed -i "s#DB#$DB#g" /etc/apache2/sites-available/DB.conf
+sudo sed -i "s#PHPV#$PHPV#g" /etc/apache2/sites-available/DB.conf
+sudo mv /etc/apache2/sites-available/DB.conf "/etc/apache2/sites-available/$DB.conf"
+
 read
 sudo a2ensite $DB
 read

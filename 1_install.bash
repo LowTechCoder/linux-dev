@@ -11,8 +11,10 @@ git clone https://github.com/LowTechCoder/linux-nvim
 mkdir .config/nvim/
 cp linux-nvim/init.vim .config/nvim/
 sudo apt install chromium-browser
+echo "Press any key to continue to tasksel"
 read
 sudo tasksel
 #use tasksel to install server stuff
+echo "Press any key to restart"
 read
 shutdown -r now

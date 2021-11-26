@@ -11,6 +11,7 @@ git clone https://github.com/LowTechCoder/linux-nvim
 mkdir .config/nvim/
 cp linux-nvim/init.vim .config/nvim/
 sudo apt install chromium-browser
+echo "Select LAMP Server and what ever else"
 echo "Press ENTER key to continue to tasksel"
 read
 sudo tasksel

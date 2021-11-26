@@ -15,7 +15,7 @@ else
     exit
 fi
 cd /var/www/html/
-sudo apt install phpmyadmin
+sudo apt install phpmyadmin -y
 #sudo nvim index.html 
 #sudo nvim info.php
 sudo mkdir temp

@@ -26,9 +26,7 @@ cd ..
 sudo cp -r temp/wordpress/ ./$DB
 sudo chown www-data:www-data "/var/www/html/$DB/" -R
 
-
-
-sudo sh -c 'echo "<?php phpinfo(); ?>" > /var/www/$DB/info.php'
+sudo sh -c "echo '<?php phpinfo(); ?>' > /var/www/html/$DB/info.php"
 
 cd "$DB/"
 sudo cp wp-config-sample.php wp-config.php

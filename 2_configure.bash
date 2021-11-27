@@ -90,7 +90,7 @@ sudo a2ensite $DB.conf
 #sudo apache2ctl configtest
 sudo systemctl reload apache2
 
-chromium "https://localhost/$DB/wp-admin/install.php" & chromium https://localhost/phpmyadmin & chromium https://localhost/$DB/info.php&
+chromium "https://localhost/$DB/wp-admin/install.php" & chromium http://localhost/phpmyadmin & chromium https://localhost/$DB/info.php&
 
 
 

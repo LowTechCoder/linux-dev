@@ -3,9 +3,6 @@
 read -p "Enter DB: " DB;
 read -p "Enter DB_USER: " DB_USER;
 read -p "Enter DB_PW: " DB_PW;
-echo "DB: $DB"
-echo "DB_USER: $DB_USER"
-echo "DB_PW: $DB_PW"
 read -r -p "Are these correct? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
 then

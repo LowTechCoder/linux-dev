@@ -1,6 +1,7 @@
 #step1
 sudo apt update
 sudo apt upgrade -y
+#sudo apt-get install gnome-system-tools -y
 sudo apt install tasksel -y
 sudo apt install unzip -y
 sudo apt install spice-vdagent spice-webdavd -y

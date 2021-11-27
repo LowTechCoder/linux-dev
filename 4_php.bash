@@ -13,6 +13,16 @@ else
     exit
 fi
 
+sudo apt-get install software-properties-common -y
+sudo add-apt-repository ppa:ondrej/php
+sudo apt-get update -y
+sudo apt-get install php$PHPV php$PHPV-fpm php$PHPV-mysql libapache2-mod-php$PHPV libapache2-mod-fcgid -y
+sudo systemctl start php$PHPV-fpm
+sudo systemctl start php$PHPV-fpm
+sudo a2enmod actions fcgid alias proxy_fcgi
+sudo systemctl restart apache2
+
+
 sudo sh -c 'echo "
 <VirtualHost *:80>
      ServerAdmin admin@DB

@@ -40,7 +40,10 @@ sudo mysql -u root -Bse "flush privileges;"
 
 sudo systemctl reload apache2
 
-sudo cp /etc/phpmyadmin/apache.conf /etc/apache2/conf-available/phpmyadmin.conf
+#sudo cp /etc/phpmyadmin/apache.conf /etc/apache2/conf-available/phpmyadmin.conf
+sudo cp ~/utm-linux/apache.conf "/etc/apache2/sites-available/phpmyadmin.conf"
+sudo sed -i "s#DB#phpmyadmin#g" /etc/apache2/sites-available/phpmyadmin.conf
+sudo sed -i "s#PHPV#7\.4#g" /etc/apache2/sites-available/phpmyadmin.conf
 sudo a2enconf phpmyadmin
 sudo service apache2 restart
 

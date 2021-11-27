@@ -82,10 +82,14 @@ sudo a2dissite 000-default.conf
 sudo systemctl restart apache2
 
 # https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-apache-in-ubuntu-20-04
+chromium https://localhost/$DB/info.php&
 sudo ufw allow "Apache Full"
+read
 sudo a2enmod ssl
 sudo systemctl restart apache2
+read
 sudo openssl req -x509 -nodes -days 9999 -newkey rsa:2048 -keyout /etc/ssl/private/apache-selfsigned.key -out /etc/ssl/certs/apache-selfsigned.crt
+read
 sudo a2ensite $DB.conf
 #sudo apache2ctl configtest
 sudo systemctl reload apache2

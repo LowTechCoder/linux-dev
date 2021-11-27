@@ -22,6 +22,7 @@ sudo unzip -q latest.zip
 cd ..
 sudo cp -r temp/wordpress/ ./$DB
 sudo sh -c "echo '<?php phpinfo(); ?>' > /var/www/html/$DB/info.php"
+sudo sh -c "echo '<?php phpinfo(); ?>' > /var/www/html/index.php"
 cd "$DB/"
 sudo cp wp-config-sample.php wp-config.php
 sudo sed -i "s#database_name_here#$DB#g" wp-config.php

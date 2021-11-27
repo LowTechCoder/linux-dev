@@ -61,7 +61,7 @@ sudo systemctl restart apache2
 sudo a2enmod ssl
 sudo systemctl restart apache2
 sudo openssl req -x509 -nodes -days 9999 -newkey rsa:2048 -keyout /etc/ssl/private/apache-selfsigned.key -out /etc/ssl/certs/apache-selfsigned.crt
-sudo cp "utm-linux/apache.conf" "/etc/apache2/sites-available/localhost.conf"
+sudo cp ~/utm-linux/apache.conf "/etc/apache2/sites-available/localhost.conf"
 sudo sed -i "s#DB#$DB#g" /etc/apache2/sites-available/localhost.conf
 sudo sed -i "s#PHPV#$PHPV#g" /etc/apache2/sites-available/localhost.conf
 #sudo mv /etc/apache2/sites-available/DB.conf "/etc/apache2/sites-available/$DB.conf"

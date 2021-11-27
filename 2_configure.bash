@@ -70,6 +70,9 @@ sudo sh -c 'echo "
     </FilesMatch>
      ErrorLog \${APACHE_LOG_DIR}/DB_error.log
      CustomLog \${APACHE_LOG_DIR}/DB_access.log combined
+     SSLEngine on
+     SSLCertificateFile /etc/ssl/certs/apache-selfsigned.crt
+     SSLCertificateKeyFile /etc/ssl/private/apache-selfsigned.key
 </VirtualHost>" > /etc/apache2/sites-available/DB.conf'
 sudo sed -i "s#DB#$DB#g" /etc/apache2/sites-available/DB.conf
 sudo sed -i "s#PHPV#$PHPV#g" /etc/apache2/sites-available/DB.conf
@@ -78,7 +81,14 @@ sudo a2ensite $DB
 sudo a2dissite 000-default.conf
 sudo systemctl restart apache2
 
-
+# https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-apache-in-ubuntu-20-04
+sudo ufw allow "Apache Full"
+sudo a2enmod ssl
+sudo systemctl restart apache2
+sudo openssl req -x509 -nodes -days 9999 -newkey rsa:2048 -keyout /etc/ssl/private/apache-selfsigned.key -out /etc/ssl/certs/apache-selfsigned.crt
+sudo a2ensite $DB.conf
+#sudo apache2ctl configtest
+sudo systemctl reload apache2
 
 chromium "https://localhost/$DB/wp-admin/install.php" & chromium https://localhost/phpmyadmin & chromium https://localhost/$DB/info.php&
 

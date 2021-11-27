@@ -81,6 +81,11 @@ sudo sh -c 'echo "
      SSLEngine on
      SSLCertificateFile /etc/ssl/certs/apache-selfsigned.crt
      SSLCertificateKeyFile /etc/ssl/private/apache-selfsigned.key
+</VirtualHost>
+
+<VirtualHost *:80>
+    ServerName localhost
+    Redirect / https://localhost/
 </VirtualHost>" > /etc/apache2/sites-available/DB.conf'
 sudo sed -i "s#DB#$DB#g" /etc/apache2/sites-available/DB.conf
 sudo sed -i "s#PHPV#$PHPV#g" /etc/apache2/sites-available/DB.conf

@@ -60,38 +60,12 @@ sudo systemctl restart apache2
 sudo a2enmod ssl
 sudo systemctl restart apache2
 sudo openssl req -x509 -nodes -days 9999 -newkey rsa:2048 -keyout /etc/ssl/private/apache-selfsigned.key -out /etc/ssl/certs/apache-selfsigned.crt
-sudo sh -c 'echo "
-<VirtualHost *:443>
-     ServerAdmin admin@DB
-     ServerName DB
-     DocumentRoot /var/www/html/
-     DirectoryIndex index.php
-     <Directory /var/www/html>
-        Options Indexes FollowSymLinks MultiViews
-        AllowOverride All
-        Order allow,deny
-        allow from all
-     </Directory>
-    <FilesMatch \.php$>
-        # From the Apache version 2.4.10 and above, use the SetHandler to run PHP as a fastCGI process server
-         SetHandler \"proxy:unix:/run/php/phpPHPV-fpm.sock|fcgi://localhost\"
-    </FilesMatch>
-     ErrorLog \${APACHE_LOG_DIR}/DB_error.log
-     CustomLog \${APACHE_LOG_DIR}/DB_access.log combined
-     SSLEngine on
-     SSLCertificateFile /etc/ssl/certs/apache-selfsigned.crt
-     SSLCertificateKeyFile /etc/ssl/private/apache-selfsigned.key
-</VirtualHost>
+sudo cp "utm-linux/apache.conf" "/etc/apache2/sites-available/localhost.conf"
+sudo sed -i "s#DB#$DB#g" /etc/apache2/sites-available/localhost.conf
+sudo sed -i "s#PHPV#$PHPV#g" /etc/apache2/sites-available/localhost.conf
+#sudo mv /etc/apache2/sites-available/DB.conf "/etc/apache2/sites-available/$DB.conf"
 
-<VirtualHost *:80>
-    ServerName localhost
-    Redirect / https://localhost/
-</VirtualHost>" > /etc/apache2/sites-available/DB.conf'
-sudo sed -i "s#DB#$DB#g" /etc/apache2/sites-available/DB.conf
-sudo sed -i "s#PHPV#$PHPV#g" /etc/apache2/sites-available/DB.conf
-sudo mv /etc/apache2/sites-available/DB.conf "/etc/apache2/sites-available/$DB.conf"
-
-sudo a2ensite $DB.conf
+sudo a2ensite localhost.conf
 #sudo apache2ctl configtest
 sudo ufw allow "Apache Full"
 sudo systemctl reload apache2

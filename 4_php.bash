@@ -49,3 +49,5 @@ sudo mv /etc/apache2/sites-available/DB.conf "/etc/apache2/sites-available/$DB.c
 sudo a2ensite $DB
 sudo a2dissite 000-default.conf
 sudo systemctl restart apache2
+
+

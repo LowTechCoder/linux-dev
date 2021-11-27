@@ -29,7 +29,7 @@ sudo sh -c 'echo "
 
     <FilesMatch \.php$>
         # From the Apache version 2.4.10 and above, use the SetHandler to run PHP as a fastCGI process server
-         SetHandler "proxy:unix:/run/php/phpPHPV-fpm.sock|fcgi://localhost"
+         SetHandler \"proxy:unix:/run/php/phpPHPV-fpm.sock|fcgi://localhost\"
     </FilesMatch>
 
      ErrorLog ${APACHE_LOG_DIR}/DB_error.log

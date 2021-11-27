@@ -15,6 +15,7 @@ echo "Select LAMP Server and what ever else"
 echo "Press ENTER key to continue to tasksel"
 read
 sudo tasksel
+sudo chown www-data:www-data "/var/www/html" -R
 sudo chmod -R 755 /var/www/html
 #use tasksel to install server stuff
 echo "Press ENTER key to restart"

@@ -33,7 +33,7 @@ sudo mysql -u root -Bse "CREATE USER '$DB_USER'@'localhost' IDENTIFIED BY '$DB_P
 #sudo mysql -u root -Bse "ALTER USER '$DB_USER'@'localhost' IDENTIFIED BY '$DB_PW';"
 sudo mysql -u root -Bse "GRANT ALL PRIVILEGES ON $DB.* TO '$DB_USER'@'localhost';"
 #phpmyadmin
-sudo mysql -u root -Bse "GRANT ALL PRIVILEGES ON * TO 'phpmyadmin'@'localhost';"
+sudo mysql -u root -Bse "GRANT ALL PRIVILEGES ON *.* TO 'phpmyadmin'@'localhost';"
 #flush
 sudo mysql -u root -Bse "flush privileges;"
 

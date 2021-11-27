@@ -40,8 +40,8 @@ sudo sh -c 'echo "
          SetHandler \"proxy:unix:/run/php/phpPHPV-fpm.sock|fcgi://localhost\"
     </FilesMatch>
 
-     ErrorLog ${APACHE_LOG_DIR}/DB_error.log
-     CustomLog ${APACHE_LOG_DIR}/DB_access.log combined
+     ErrorLog \${APACHE_LOG_DIR}/DB_error.log
+     CustomLog \${APACHE_LOG_DIR}/DB_access.log combined
 </VirtualHost>" > /etc/apache2/sites-available/DB.conf'
 sudo sed -i "s#DB#$DB#g" /etc/apache2/sites-available/DB.conf
 sudo sed -i "s#PHPV#$PHPV#g" /etc/apache2/sites-available/DB.conf

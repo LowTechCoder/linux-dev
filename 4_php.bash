@@ -49,4 +49,5 @@ sudo sed -i "s#DB#$DB#g" /etc/apache2/sites-available/DB.conf
 sudo sed -i "s#PHPV#$PHPV#g" /etc/apache2/sites-available/DB.conf
 sudo mv /etc/apache2/sites-available/DB.conf "/etc/apache2/sites-available/$DB.conf"
 sudo a2ensite $DB
+sudo a2dissite 000-default.conf
 sudo systemctl restart apache2

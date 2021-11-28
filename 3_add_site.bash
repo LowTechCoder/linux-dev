@@ -1,8 +1,8 @@
 # https://www.digitalocean.com/community/tutorials/how-to-run-multiple-php-versions-on-one-server-using-apache-and-php-fpm-on-ubuntu-20-04
 
 #step 2
-read -p "Enter DB: " DB;
-read -p "Enter DB_USER: " DB_USER;
+read -p "Enter Site Name: " SITE;
+read -p "Enter DB (no fancy characters): " DB;
 read -p "Enter DB_PW: " DB_PW;
 read -p "Enter PHP Version: " PHPV;
 read -r -p "Are these correct? [y/N] " response
@@ -23,17 +23,17 @@ cd temp
 sudo wget https://wordpress.org/latest.zip
 sudo unzip -q latest.zip
 cd ..
-sudo cp -r temp/wordpress/ ./$DB
-sudo sh -c "echo '<?php phpinfo(); ?>' > /var/www/html/$DB/info.php"
+sudo cp -r temp/wordpress/ ./$SITE
+sudo sh -c "echo '<?php phpinfo(); ?>' > /var/www/html/$SITE/info.php"
 #sudo sh -c "echo '<?php phpinfo(); ?>' > /var/www/html/index.php"
-cd "$DB/"
+cd "$SITE/"
 sudo cp wp-config-sample.php wp-config.php
 sudo sed -i "s#database_name_here#$DB#g" wp-config.php
-sudo sed -i "s#username_here#$DB_USER#g" wp-config.php
+sudo sed -i "s#username_here#$DB#g" wp-config.php
 sudo sed -i "s#password_here#$DB_PW#g" wp-config.php
 
 # -- hosts file
-sudo sh -c "echo '127.0.0.1 $DB' >> /etc/hosts"
+sudo sh -c "echo '127.0.0.1 $SITE' >> /etc/hosts"
 sudo /bin/systemctl restart systemd-hostnamed
 
 # -- sql
@@ -70,15 +70,15 @@ s#udo add-apt-repository ppa:ondrej/php
 #sudo a2enmod ssl
 #sudo systemctl restart apache2
 #sudo openssl req -x509 -nodes -days 9999 -newkey rsa:2048 -keyout /etc/ssl/private/apache-selfsigned.key -out /etc/ssl/certs/apache-selfsigned.crt
-sudo cp ~/linux-dev/apache.conf "/etc/apache2/sites-available/$DB.conf"
-sudo sed -i "s#DB#$DB#g" /etc/apache2/sites-available/$DB.conf
-sudo sed -i "s#PHPV#$PHPV#g" /etc/apache2/sites-available/$DB.conf
-sudo a2ensite $DB.conf
+sudo cp ~/linux-dev/apache.conf "/etc/apache2/sites-available/$SITE.conf"
+sudo sed -i "s#SITE#$SITE#g" /etc/apache2/sites-available/$SITE.conf
+sudo sed -i "s#PHPV#$PHPV#g" /etc/apache2/sites-available/$SITE.conf
+sudo a2ensite $SITE.conf
 #sudo apache2ctl configtest
 #sudo ufw allow "Apache Full"
 sudo systemctl reload apache2
 
-chromium "https://$DB/wp-admin/install.php" & chromium http://localhost/phpmyadmin & chromium https://$DB/info.php&
+chromium "https://$SITE/wp-admin/install.php" & chromium http://localhost/phpmyadmin & chromium https://$SITE/info.php&
 
 
 

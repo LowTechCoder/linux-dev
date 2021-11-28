@@ -4,7 +4,7 @@
 read -p "Enter Site Name (example.com): " SITE;
 read -p "Enter DB (no fancy characters): " DB;
 read -p "Enter DB_PW: " DB_PW;
-read -p "Enter PHP Version (7.4, 8.0, 8.1): " PHPV;
+read -p "Enter PHP Version (7.4, 8.0): " PHPV;
 read -r -p "Are these correct? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
 then

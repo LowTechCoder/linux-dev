@@ -14,7 +14,7 @@
 #    exit
 #fi
 #cd /var/www/html/
-echo "check the 'apache' box and hit tab to get to the 'ok' button"
+echo "check the 'apache2' boxy by hitting 'space' then hit tab to get to the 'ok' button, then hit 'enter'"
 echo "press 'enter' to continue"
 read
 sudo apt install phpmyadmin -y

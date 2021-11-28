@@ -32,7 +32,7 @@ sudo sed -i "s#username_here#$DB_USER#g" wp-config.php
 sudo sed -i "s#password_here#$DB_PW#g" wp-config.php
 
 # -- hosts file
-sudo sh -c 'echo "127.0.0.1 $DB" >> /etc/hosts'
+sudo sh -c "echo '127.0.0.1 $DB' >> /etc/hosts"
 
 
 # -- sql

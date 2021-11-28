@@ -42,7 +42,7 @@ sudo systemctl restart apache2
 # https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-apache-in-ubuntu-20-04
 sudo a2enmod ssl
 sudo systemctl restart apache2
-echo "Doing ssl.  Hit 'enter' to skip most (can skip first 5)"
+echo "Doing ssl next.  Hit 'enter' to skip most (can skip first 5)"
 echo "Type in 'localhost' for 'Common Name'"
 echo "Press ENTER to continue"
 read

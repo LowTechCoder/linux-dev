@@ -33,7 +33,7 @@ sudo sed -i "s#password_here#$DB_PW#g" wp-config.php
 
 # -- hosts file
 sudo sh -c "echo '127.0.0.1 $DB' >> /etc/hosts"
-
+sudo /bin/systemctl restart systemd-hostnamed
 
 # -- sql
 sudo mysql -u root -Bse "create database $DB;"

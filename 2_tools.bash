@@ -19,9 +19,18 @@ sudo service apache2 restart
 sudo apt install software-properties-common -y
 sudo add-apt-repository ppa:ondrej/php
 sudo apt update -y
-sudo apt install php8.0-fpm -y
 PHPV=7.4
 sudo apt-get install php$PHPV php$PHPV-fpm php$PHPV-mysql libapache2-mod-php$PHPV libapache2-mod-fcgid -y
+sudo systemctl start php$PHPV-fpm
+
+PHPV=8.0
+sudo apt-get install php$PHPV php$PHPV-fpm php$PHPV-mysql libapache2-mod-php$PHPV libapache2-mod-fcgid -y
+sudo systemctl start php$PHPV-fpm
+
+PHPV=8.1
+sudo apt-get install php$PHPV php$PHPV-fpm php$PHPV-mysql libapache2-mod-php$PHPV libapache2-mod-fcgid -y
+sudo systemctl start php$PHPV-fpm
+
 sudo systemctl start php$PHPV-fpm
 sudo a2enmod actions fcgid alias proxy_fcgi
 sudo systemctl restart apache2

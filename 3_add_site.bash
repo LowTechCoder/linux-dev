@@ -55,7 +55,7 @@ sudo systemctl reload apache2
 
 # -- php versions
 #sudo apt-get install software-properties-common -y
-s#udo add-apt-repository ppa:ondrej/php
+#sudo add-apt-repository ppa:ondrej/php
 #sudo apt-get update -y
 #sudo apt-get install php$PHPV php$PHPV-fpm php$PHPV-mysql libapache2-mod-php$PHPV libapache2-mod-fcgid -y
 #sudo systemctl start php$PHPV-fpm

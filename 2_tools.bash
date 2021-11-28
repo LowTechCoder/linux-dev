@@ -4,30 +4,11 @@ echo "check the 'apache2' boxy by hitting 'space' then 'enter' to choose 'ok' bu
 echo "press 'enter' to continue"
 read
 sudo apt install phpmyadmin -y
-#sudo mkdir temp
-#cd temp
-#sudo wget https://wordpress.org/latest.zip
-#sudo unzip -q latest.zip
-#cd ..
-#sudo cp -r temp/wordpress/ ./$DB
-#sudo sh -c "echo '<?php phpinfo(); ?>' > /var/www/html/$DB/info.php"
-#sudo sh -c "echo '<?php phpinfo(); ?>' > /var/www/html/index.php"
-#cd "$DB/"
-#sudo cp wp-config-sample.php wp-config.php
-#sudo sed -i "s#database_name_here#$DB#g" wp-config.php
-#sudo sed -i "s#username_here#$DB_USER#g" wp-config.php
-#sudo sed -i "s#password_here#$DB_PW#g" wp-config.php
 
-#sudo mysql -u root -Bse "create database $DB;"
-#sudo mysql -u root -Bse "CREATE USER '$DB_USER'@'localhost' IDENTIFIED BY '$DB_PW';"
-#sudo mysql -u root -Bse "ALTER USER '$DB_USER'@'localhost' IDENTIFIED BY '$DB_PW';"
-#sudo mysql -u root -Bse "GRANT ALL PRIVILEGES ON $DB.* TO '$DB_USER'@'localhost';"
 #phpmyadmin
 sudo mysql -u root -Bse "GRANT ALL PRIVILEGES ON *.* TO 'phpmyadmin'@'localhost';"
 #flush
 sudo mysql -u root -Bse "flush privileges;"
-
-#sudo systemctl reload apache2
 
 #sudo cp /etc/phpmyadmin/apache.conf /etc/apache2/conf-available/phpmyadmin.conf
 #sudo cp /etc/phpmyadmin/apache.conf /etc/apache2/sites-available/phpmyadmin.conf
@@ -44,7 +25,7 @@ sudo systemctl start php$PHPV-fpm
 sudo a2enmod actions fcgid alias proxy_fcgi
 sudo systemctl restart apache2
 
-#sudo a2ensite $DB
+#disable default apache conf
 sudo a2dissite 000-default.conf
 sudo systemctl restart apache2
 
@@ -56,12 +37,8 @@ echo "Type in 'localhost' for 'Common Name'"
 echo "Press ENTER to continue"
 read
 sudo openssl req -x509 -nodes -days 9999 -newkey rsa:2048 -keyout /etc/ssl/private/apache-selfsigned.key -out /etc/ssl/certs/apache-selfsigned.crt
-#sudo cp ~/linux-dev/apache.conf "/etc/apache2/sites-available/localhost.conf"
-#sudo sed -i "s#DB#$DB#g" /etc/apache2/sites-available/localhost.conf
-#sudo sed -i "s#PHPV#$PHPV#g" /etc/apache2/sites-available/localhost.conf
-#sudo mv /etc/apache2/sites-available/DB.conf "/etc/apache2/sites-available/$DB.conf"
 
-#sudo a2ensite localhost.conf
+#test your conf
 #sudo apache2ctl configtest
 sudo ufw allow "Apache Full"
 sudo systemctl reload apache2

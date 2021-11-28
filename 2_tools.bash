@@ -14,6 +14,9 @@
 #    exit
 #fi
 #cd /var/www/html/
+echo "check the 'apache' box and hit tab to get to the 'ok' button"
+echo "press 'enter' to continue"
+read
 sudo apt install phpmyadmin -y
 #sudo mkdir temp
 #cd temp

@@ -65,7 +65,9 @@ sudo systemctl restart apache2
 # https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-apache-in-ubuntu-20-04
 sudo a2enmod ssl
 sudo systemctl restart apache2
-echo "Doing ssl.  Choose 'localhost' for... Press ENTER to continue"
+echo "Doing ssl.  Hit 'enter' to skip most (can skip first 5)"
+echo "Type in 'localhost' for 'Common Name'"
+echo "Press ENTER to continue"
 read
 sudo openssl req -x509 -nodes -days 9999 -newkey rsa:2048 -keyout /etc/ssl/private/apache-selfsigned.key -out /etc/ssl/certs/apache-selfsigned.crt
 #sudo cp ~/linux-dev/apache.conf "/etc/apache2/sites-available/localhost.conf"

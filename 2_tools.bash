@@ -1,6 +1,6 @@
 # https://www.digitalocean.com/community/tutorials/how-to-run-multiple-php-versions-on-one-server-using-apache-and-php-fpm-on-ubuntu-20-04
 
-echo "check the 'apache2' boxy by hitting 'space' then 'enter' to choose 'ok' button"
+echo "On the next screen, check the 'apache2' box by hitting 'space' then 'enter' to choose 'ok' button"
 echo "press 'enter' to continue"
 read
 sudo apt install phpmyadmin -y

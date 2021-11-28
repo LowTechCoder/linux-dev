@@ -1,20 +1,6 @@
 # https://www.digitalocean.com/community/tutorials/how-to-run-multiple-php-versions-on-one-server-using-apache-and-php-fpm-on-ubuntu-20-04
 
-#step 2
-#read -p "Enter DB: " DB;
-#read -p "Enter DB_USER: " DB_USER;
-#read -p "Enter DB_PW: " DB_PW;
-#read -p "Enter PHP Version: " PHPV;
-#read -r -p "Are these correct? [y/N] " response
-#if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
-#then
-#    echo "OK!"
-#else
-#    echo "exiting"
-#    exit
-#fi
-#cd /var/www/html/
-echo "check the 'apache2' boxy by hitting 'space' then hit tab to get to the 'ok' button, then hit 'enter'"
+echo "check the 'apache2' boxy by hitting 'space' then 'enter' to choose 'ok' button"
 echo "press 'enter' to continue"
 read
 sudo apt install phpmyadmin -y

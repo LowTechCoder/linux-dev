@@ -16,7 +16,7 @@ fi
 
 # -- web files
 cd /var/www/html/
-sudo apt install phpmyadmin -y
+#sudo apt install phpmyadmin -y
 sudo rm -r temp
 sudo mkdir temp
 cd temp

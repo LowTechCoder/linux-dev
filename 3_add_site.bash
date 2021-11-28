@@ -1,7 +1,7 @@
 # https://www.digitalocean.com/community/tutorials/how-to-run-multiple-php-versions-on-one-server-using-apache-and-php-fpm-on-ubuntu-20-04
 
 #step 2
-read -p "Enter Site Name: " SITE;
+read -p "Enter Site Name (example.com): " SITE;
 read -p "Enter DB (no fancy characters): " DB;
 read -p "Enter DB_PW: " DB_PW;
 read -p "Enter PHP Version: " PHPV;

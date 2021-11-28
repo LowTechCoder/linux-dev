@@ -78,7 +78,7 @@ sudo a2ensite $SITE.conf
 #sudo ufw allow "Apache Full"
 sudo systemctl reload apache2
 
-chromium "https://$SITE/wp-admin/install.php" & chromium http://localhost/phpmyadmin & chromium https://$SITE/info.php&
+chromium "https://$SITE/wp-admin/install.php" & chromium https://$SITE/info.php
 
 
 

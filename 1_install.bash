@@ -19,9 +19,11 @@ sudo tasksel
 sudo chown www-data:www-data "/var/www/html" -R
 sudo chmod -R 755 /var/www/html
 #https://askubuntu.com/questions/767504/permissions-problems-with-var-www-html-and-my-own-home-directory-for-a-website
+#these didn't work last time, but doing it again manually did the trick.
+sudo chgrp -R www-data /var/www/html
 sudo chown -R $USER /var/www/html/
-#sudo find /var/www/html -type d -exec chmod u+rwx {} +
-#sudo find /var/www/html -type f -exec chmod u+rw {} +
+sudo find /var/www/html -type d -exec chmod u+rwx {} +
+sudo find /var/www/html -type f -exec chmod u+rw {} +
 #use tasksel to install server stuff
 echo "Press ENTER key to restart"
 read

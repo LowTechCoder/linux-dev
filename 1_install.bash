@@ -6,6 +6,7 @@ sudo apt install tasksel -y
 sudo apt install unzip -y
 sudo apt install spice-vdagent spice-webdavd -y
 sudo apt install chromium-browser -y
+sudo apt install firefox -y
 sudo apt install neovim -y
 sudo apt install git -y
 git clone https://github.com/LowTechCoder/linux-nvim

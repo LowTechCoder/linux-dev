@@ -47,29 +47,9 @@ sudo mysql -u root -Bse "GRANT ALL PRIVILEGES ON $DB.* TO '$DB'@'localhost';"
 sudo mysql -u root -Bse "flush privileges;"
 sudo systemctl reload apache2
 
-# -- phpmyadmin
-#sudo cp /etc/phpmyadmin/apache.conf /etc/apache2/conf-available/phpmyadmin.conf
-#sudo cp /etc/phpmyadmin/apache.conf /etc/apache2/sites-available/phpmyadmin.conf
-#sudo a2enconf phpmyadmin
-#sudo service apache2 restart
-
-# -- php versions
-#sudo apt-get install software-properties-common -y
-#sudo add-apt-repository ppa:ondrej/php
-#sudo apt-get update -y
-#sudo apt-get install php$PHPV php$PHPV-fpm php$PHPV-mysql libapache2-mod-php$PHPV libapache2-mod-fcgid -y
-#sudo systemctl start php$PHPV-fpm
-#sudo a2enmod actions fcgid alias proxy_fcgi
-#sudo systemctl restart apache2 DELETE? FIXME!
-#sudo a2ensite $DB
-#sudo a2dissite 000-default.conf
-#sudo systemctl restart apache2
 
 # -- ssl
 # https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-apache-in-ubuntu-20-04
-#sudo a2enmod ssl
-#sudo systemctl restart apache2
-#sudo openssl req -x509 -nodes -days 9999 -newkey rsa:2048 -keyout /etc/ssl/private/apache-selfsigned.key -out /etc/ssl/certs/apache-selfsigned.crt
 sudo cp ~/linux-dev/apache.conf "/etc/apache2/sites-available/$SITE.conf"
 sudo sed -i "s#SITE#$SITE#g" /etc/apache2/sites-available/$SITE.conf
 sudo sed -i "s#PHPV#$PHPV#g" /etc/apache2/sites-available/$SITE.conf
@@ -77,6 +57,12 @@ sudo a2ensite $SITE.conf
 #sudo apache2ctl configtest
 #sudo ufw allow "Apache Full"
 sudo systemctl reload apache2
+
+# do this again for some reason...
+sudo chgrp -R www-data /var/www/html
+sudo chown -R $USER /var/www/html/
+sudo find /var/www/html -type d -exec chmod u+rwx {} +
+sudo find /var/www/html -type f -exec chmod u+rw {} +
 
 chromium "https://$SITE/wp-admin/install.php" & chromium https://$SITE/info.php
 

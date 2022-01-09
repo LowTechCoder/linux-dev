@@ -10,7 +10,8 @@ sudo apt install firefox -y
 sudo apt install neovim -y
 sudo apt install git -y
 git clone https://github.com/LowTechCoder/linux-nvim
-mkdir .config/nvim/
+mkdir -p .config
+mkdir -p .config/nvim/
 cp linux-nvim/init.vim .config/nvim/
 sudo apt install chromium-browser
 echo "Select LAMP Server and what ever else"

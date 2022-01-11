@@ -49,7 +49,10 @@ sudo openssl req -x509 -nodes -days 9999 -newkey rsa:2048 -keyout /etc/ssl/priva
 sudo ufw allow "Apache Full"
 sudo systemctl reload apache2
 
-echo "DONE!!"
+echo "Script Done!!"
+echo "The username for phpmyadmin is: phpmyadmin"
+echo "Press ENTER to launch Chrome..."
+read
 chromium http://localhost/phpmyadmin
 
 

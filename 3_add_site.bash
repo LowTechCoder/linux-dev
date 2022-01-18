@@ -31,6 +31,7 @@ sudo cp wp-config-sample.php wp-config.php
 sudo sed -i "s#database_name_here#$DB#g" wp-config.php
 sudo sed -i "s#username_here#$DB#g" wp-config.php
 sudo sed -i "s#password_here#$DB_PW#g" wp-config.php
+sudo cp wp-config.php wp-config.php-backup
 
 # -- hosts file
 sudo sh -c "echo '127.0.0.1 $SITE' >> /etc/hosts"

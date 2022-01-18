@@ -64,9 +64,9 @@ sudo chown -R $USER /var/www/html/
 sudo find /var/www/html -type d -exec chmod u+rwx {} +
 sudo find /var/www/html -type f -exec chmod u+rw {} +
 
-chromium "https://$SITE/wp-admin/install.php" & 
-chromium https://$SITE/info.php &
-echo "ctrl + c to background the browser process in the terminal"
-
+echo "copy/paste these into chrome"
+echo "https://$SITE/wp-admin/install.php"
+echo "https://$SITE/info.php"
+echo "Done!!"
 
 

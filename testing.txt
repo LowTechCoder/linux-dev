@@ -105,4 +105,5 @@ sudo systemctl restart apache2.service
 #this will actually stop the damn thing
 sudo systemctl disable apache2 && sudo systemctl stop apache2
 
-
+sudo find . -type d -exec chmod 755 {} \;
+sudo find . -type f -exec chmod 644 {} \;

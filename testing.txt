@@ -76,7 +76,6 @@ sudo systemctl reload apache2
 #db, all worked last time.
 PROJECT=wp5
 cd "/var/www/html/$PROJECT.loc/"
-PROJECT2="$PROJECT_2"
 cat $PROJECT.sql |  sed 's/\sDEFINER=`[^`]*`@`[^`]*`//g' > "$PROJECT.2.sql"
 sudo mysql -u root -p -e "drop database $PROJECT"
 sudo mysql -u root -p -e "create database $PROJECT"
@@ -96,5 +95,14 @@ sudo sed -i "s#table_prefix = 'wp_'#$table_prefix = '$PREFIX_'#g" wp-config.php
 
 
 
+## Start command ##
+sudo systemctl start apache2.service
+## Stop command ##
+sudo systemctl stop apache2.service
+## Restart command ##
+sudo systemctl restart apache2.service
+
+#this will actually stop the damn thing
+sudo systemctl disable apache2 && sudo systemctl stop apache2
 
 

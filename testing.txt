@@ -72,6 +72,28 @@ sudo a2ensite wordpress.conf
 sudo systemctl reload apache2
 
 
+# testing this, don't run it just yet!
+#db, all worked last time.
+PROJECT=wp5
+cd "/var/www/html/$PROJECT.loc/"
+PROJECT2="$PROJECT_2"
+cat $PROJECT.sql |  sed 's/\sDEFINER=`[^`]*`@`[^`]*`//g' > "$PROJECT.2.sql"
+sudo mysql -u root -p -e "drop database $PROJECT"
+sudo mysql -u root -p -e "create database $PROJECT"
+sudo mysql -u root -p $PROJECT < "$PROJECT.2.sql"
+
+#files
+#needs refinement
+mv efa-backup21/ efa
+mv efa-backup21-shrank.zip $PROJECT.zip
+cp -r $PROJECT/* .
+cp wp-config.php-backup wp-config.php
+
+#this didn't work!!!
+$PREFIX
+sudo sed -i "s#table_prefix = 'wp_'#$table_prefix = '$PREFIX_'#g" wp-config.php
+
+
 
 
 

@@ -28,7 +28,7 @@ sudo wget https://wordpress.org/latest.zip
 sudo unzip -q latest.zip
 cd ..
 sudo cp -r temp/wordpress/ ./$L_SITE_LOC
-sudo bash -c "echo '<?php phpinfo(); ?>' > /var/www/html/$L_SITE/info.php"
+sudo bash -c "echo '<?php phpinfo(); ?>' > /var/www/html/$L_SITE_LOC/info.php"
 cd "$L_SITE_LOC/"
 sudo cp wp-config-sample.php wp-config.php
 sudo sed -i "s#database_name_here#$DB#g" wp-config.php

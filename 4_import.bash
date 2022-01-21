@@ -72,7 +72,7 @@ sudo find /var/www/html -type f -exec chmod 644 {} \;
 sudo rm -r "$WEB_FILES/wp-content/plugins/wps-hide-login/"
 
 echo "https://$L_SITE_LOC/info.php"
-echo "https://$L_SITE_LOC.loc/wp-login.php"
+echo "https://$L_SITE_LOC/wp-login.php"
 echo "The username for phpmyadmin is: phpmyadmin"
 echo "http://localhost/phpmyadmin"
 echo "/var/www/html/"

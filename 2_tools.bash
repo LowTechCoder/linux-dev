@@ -20,11 +20,11 @@ sudo apt install software-properties-common -y
 sudo add-apt-repository ppa:ondrej/php
 sudo apt update -y
 PHPV=7.4
-sudo apt-get install php$PHPV php$PHPV-fpm php$PHPV-mysql libapache2-mod-php$PHPV libapache2-mod-fcgid -y
+sudo apt-get install php$PHPV php$PHPV-fpm php$PHPV-mysql libapache2-mod-php$PHPV libapache2-mod-fcgid php$PHPV-curl -y
 sudo systemctl start php$PHPV-fpm
 
 PHPV=8.0
-sudo apt-get install php$PHPV php$PHPV-fpm php$PHPV-mysql libapache2-mod-php$PHPV libapache2-mod-fcgid -y
+sudo apt-get install php$PHPV php$PHPV-fpm php$PHPV-mysql libapache2-mod-php$PHPV libapache2-mod-fcgid php$PHPV-curl -y
 sudo systemctl start php$PHPV-fpm
 
 sudo systemctl start php$PHPV-fpm

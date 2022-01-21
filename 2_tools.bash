@@ -15,7 +15,6 @@ sudo mysql -u root -Bse "flush privileges;"
 sudo a2enconf phpmyadmin
 sudo service apache2 restart
 
-
 sudo apt install software-properties-common -y
 sudo add-apt-repository ppa:ondrej/php
 sudo apt update -y
@@ -50,10 +49,8 @@ sudo ufw allow "Apache Full"
 sudo systemctl reload apache2
 
 echo "The username for phpmyadmin is: phpmyadmin"
-echo "Copy/paste this into your browser:"
 echo "http://localhost/phpmyadmin"
-echo "Script Done!!"
-
-
-
-
+echo "/var/www/html/"
+echo "/etc/apache2/sites-available/"
+echo "/var/log/apache2/"
+echo "Done!"

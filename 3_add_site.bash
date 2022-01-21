@@ -1,9 +1,7 @@
 # https://www.digitalocean.com/community/tutorials/how-to-run-multiple-php-versions-on-one-server-using-apache-and-php-fpm-on-ubuntu-20-04
 
-#step 2
-read -p "Enter Site Name (example.loc): " SITE;
-read -p "Enter DB (no fancy characters) (example): " DB;
-read -p "Enter DB_PW: " DB_PW;
+read -p "Enter local site name without the '.loc': " L_SITE;
+read -p "Enter DB PW: " DB_PW;
 read -p "Enter PHP Version (7.4, 8.0): " PHPV;
 read -r -p "Are these correct? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
@@ -14,27 +12,29 @@ else
     exit
 fi
 
+DB="$L_SITE"
+L_SITE_LOC="$L_SITE.loc"
+WEB_FILES="/var/www/html/$L_SITE_LOC"
+
 # -- web files
 cd /var/www/html/
-#sudo apt install phpmyadmin -y
 sudo rm -r temp
 sudo mkdir temp
 cd temp
 sudo wget https://wordpress.org/latest.zip
 sudo unzip -q latest.zip
 cd ..
-sudo cp -r temp/wordpress/ ./$SITE
-sudo sh -c "echo '<?php phpinfo(); ?>' > /var/www/html/$SITE/info.php"
-#sudo sh -c "echo '<?php phpinfo(); ?>' > /var/www/html/index.php"
-cd "$SITE/"
+sudo cp -r temp/wordpress/ ./$L_SITE_LOC
+sudo bash -c "echo '<?php phpinfo(); ?>' > /var/www/html/$SITE/info.php"
+cd "$L_SITE_LOC/"
 sudo cp wp-config-sample.php wp-config.php
 sudo sed -i "s#database_name_here#$DB#g" wp-config.php
 sudo sed -i "s#username_here#$DB#g" wp-config.php
 sudo sed -i "s#password_here#$DB_PW#g" wp-config.php
-sudo cp wp-config.php wp-config.php-backup
+sudo cp wp-config.php wp-config-add_site_backup.php
 
 # -- hosts file
-sudo sh -c "echo '127.0.0.1 $SITE' >> /etc/hosts"
+sudo bash -c "echo '127.0.0.1 $L_SITE_LOC' >> /etc/hosts"
 sudo /bin/systemctl restart systemd-hostnamed
 
 # -- sql
@@ -48,13 +48,12 @@ sudo mysql -u root -Bse "GRANT ALL PRIVILEGES ON $DB.* TO '$DB'@'localhost';"
 sudo mysql -u root -Bse "flush privileges;"
 sudo systemctl reload apache2
 
-
 # -- ssl
 # https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-apache-in-ubuntu-20-04
-sudo cp ~/linux-dev/apache.conf "/etc/apache2/sites-available/$SITE.conf"
-sudo sed -i "s#SITE#$SITE#g" /etc/apache2/sites-available/$SITE.conf
-sudo sed -i "s#PHPV#$PHPV#g" /etc/apache2/sites-available/$SITE.conf
-sudo a2ensite $SITE.conf
+sudo cp ~/linux-dev/apache.conf "/etc/apache2/sites-available/$L_SITE_LOC.conf"
+sudo sed -i "s#SITE#$L_SITE_LOC#g" /etc/apache2/sites-available/$L_SITE_LOC.conf
+sudo sed -i "s#PHPV#$PHPV#g" /etc/apache2/sites-available/$L_SITE_LOC.conf
+sudo a2ensite $L_SITE_LOC.conf
 #sudo apache2ctl configtest
 #sudo ufw allow "Apache Full"
 sudo systemctl reload apache2
@@ -65,9 +64,11 @@ sudo chown -R $USER /var/www/html/
 sudo find /var/www/html -type d -exec chmod u+rwx {} +
 sudo find /var/www/html -type f -exec chmod u+rw {} +
 
-echo "copy/paste these into chrome"
-echo "https://$SITE/wp-admin/install.php"
-echo "https://$SITE/info.php"
-echo "Done!!"
-
-
+echo "https://$L_SITE_LOC/wp-admin/install.php"
+echo "https://$L_SITE_LOC/info.php"
+echo "The username for phpmyadmin is: phpmyadmin"
+echo "http://localhost/phpmyadmin"
+echo "/var/www/html/"
+echo "/etc/apache2/sites-available/"
+echo "/var/log/apache2/"
+echo "Done!"

@@ -18,14 +18,17 @@ WEB_FILES="/var/www/html/$L_SITE_LOC"
 
 # -- web files
 cd /var/www/html/
-sudo rm -r temp
+if [ -d "temp" ] 
+then
+    sudo rm -r temp
+fi
 sudo mkdir temp
 cd temp
 sudo wget https://wordpress.org/latest.zip
 sudo unzip -q latest.zip
 cd ..
 sudo cp -r temp/wordpress/ ./$L_SITE_LOC
-sudo bash -c "echo '<?php phpinfo(); ?>' > /var/www/html/$SITE/info.php"
+sudo bash -c "echo '<?php phpinfo(); ?>' > /var/www/html/$L_SITE/info.php"
 cd "$L_SITE_LOC/"
 sudo cp wp-config-sample.php wp-config.php
 sudo sed -i "s#database_name_here#$DB#g" wp-config.php

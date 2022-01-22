@@ -1,0 +1,10 @@
+echo "Useful links and paths"
+echo
+echo "https://$L_SITE_LOC/info.php"
+echo "https://$L_SITE_LOC/wp-login.php"
+echo "The username for phpmyadmin is: phpmyadmin"
+echo "http://localhost/phpmyadmin"
+echo "/var/www/html/"
+echo "/etc/apache2/sites-available/"
+echo "/var/log/apache2/"
+echo "Done!"

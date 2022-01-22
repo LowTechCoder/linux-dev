@@ -61,6 +61,8 @@ sudo a2ensite $L_SITE_LOC.conf
 #sudo ufw allow "Apache Full"
 sudo systemctl reload apache2
 
+echo "Useful links and paths"
+echo
 echo "https://$L_SITE_LOC/wp-admin/install.php"
 echo "https://$L_SITE_LOC/info.php"
 echo "The username for phpmyadmin is: phpmyadmin"

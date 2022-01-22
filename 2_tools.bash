@@ -48,6 +48,8 @@ sudo openssl req -x509 -nodes -days 9999 -newkey rsa:2048 -keyout /etc/ssl/priva
 sudo ufw allow "Apache Full"
 sudo systemctl reload apache2
 
+echo "Useful links and paths"
+echo
 echo "The username for phpmyadmin is: phpmyadmin"
 echo "http://localhost/phpmyadmin"
 echo "/var/www/html/"

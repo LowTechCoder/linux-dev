@@ -61,7 +61,8 @@ cd ..
 #deleting the wps-hide-login, if there is one.
 sudo rm -r "$WEB_FILES/wp-content/plugins/wps-hide-login/"
 
-echo "Useful links and paths"
+echo
+echo "Useful links and paths:"
 echo
 echo "https://$L_SITE_LOC/info.php"
 echo "https://$L_SITE_LOC/wp-login.php"

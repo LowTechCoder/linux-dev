@@ -12,3 +12,5 @@ sudo chown -R www-data:www-data '/var/www'
 
 # make writable to all in group
 sudo chmod -R g+rwX '/var/www'
+
+echo "All done.  You may need to logout and back in, for your user to be added to the www-data group, but probably not."

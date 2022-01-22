@@ -61,6 +61,21 @@ sudo a2ensite $L_SITE_LOC.conf
 #sudo ufw allow "Apache Full"
 sudo systemctl reload apache2
 
+# change all files to 664
+sudo find "/var/www" -type f -exec chmod 664 {} + 
+
+# change all folders to 775
+sudo find "/var/www" -type d -exec chmod 775 {} +
+
+# add user to www-data
+sudo adduser $USER www-data
+
+# change user:group
+sudo chown -R www-data:www-data '/var/www'
+
+# make writable to all in group
+sudo chmod -R g+rwX '/var/www'
+
 echo "All done.  You may need to logout and back in, for your user to be added to the www-data group, but probably not."
 echo
 echo "Useful links and paths:"

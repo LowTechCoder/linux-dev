@@ -20,21 +20,21 @@ WEB_FILES="/var/www/html/$L_SITE_LOC"
 cd /var/www/html/
 if [ -d "temp" ] 
 then
-    sudo rm -r temp
+    rm -r temp
 fi
-sudo mkdir temp
+mkdir temp
 cd temp
-sudo wget https://wordpress.org/latest.zip
-sudo unzip -q latest.zip
+wget https://wordpress.org/latest.zip
+unzip -q latest.zip
 cd ..
-sudo cp -r temp/wordpress/ ./$L_SITE_LOC
-sudo bash -c "echo '<?php phpinfo(); ?>' > /var/www/html/$L_SITE_LOC/info.php"
+cp -r temp/wordpress/ ./$L_SITE_LOC
+bash -c "echo '<?php phpinfo(); ?>' > /var/www/html/$L_SITE_LOC/info.php"
 cd "$L_SITE_LOC/"
-sudo cp wp-config-sample.php wp-config.php
-sudo sed -i "s#database_name_here#$DB#g" wp-config.php
-sudo sed -i "s#username_here#$DB#g" wp-config.php
-sudo sed -i "s#password_here#$DB_PW#g" wp-config.php
-sudo cp wp-config.php wp-config-add_site_backup.php
+cp wp-config-sample.php wp-config.php
+sed -i "s#database_name_here#$DB#g" wp-config.php
+sed -i "s#username_here#$DB#g" wp-config.php
+sed -i "s#password_here#$DB_PW#g" wp-config.php
+cp wp-config.php wp-config-add_site_backup.php
 
 # -- hosts file
 sudo bash -c "echo '127.0.0.1 $L_SITE_LOC' >> /etc/hosts"
@@ -61,6 +61,7 @@ sudo a2ensite $L_SITE_LOC.conf
 #sudo ufw allow "Apache Full"
 sudo systemctl reload apache2
 
+echo "All done.  You may need to logout and back in, for your user to be added to the www-data group, but probably not."
 echo
 echo "Useful links and paths:"
 echo

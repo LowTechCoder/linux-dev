@@ -20,14 +20,33 @@ else
     exit
 fi
 
-sudo cp "import/plugins.zip" "/var/www/html/"
 cd /var/www/html/
 if [ -d "temp" ] 
 then
-    rm -r temp
+    echo "temp rm"
+    sudo rm -r temp
 fi
 mkdir temp
 cd temp
-unzip -q plugins.zip
-sudo cp -r plugins/* "$WEB_FILES/"
+sudo cp "$HOME/linux-dev/import/plugins.zip" "/var/www/html/temp/"
+sudo unzip -q plugins.zip
+    echo "plugins rm"
+sudo rm -r plugins.zip
+if [ -d "plugins" ] 
+then
+    sudo cp -r plugins/* "$WEB_FILES/wp-content/plugins/"
+else
+    sudo cp -r * "$WEB_FILES/wp-content/plugins/"
+fi
 
+# change all files to 664
+sudo find "/var/www" -type f -exec chmod 664 {} + 
+# change all folders to 775
+sudo find "/var/www" -type d -exec chmod 775 {} +
+# add user to www-data
+sudo adduser $USER www-data
+# change user:group
+sudo chown -R www-data:www-data '/var/www'
+# make writable to all in group
+sudo chmod -R g+rwX '/var/www'
+echo "All done.  You may need to logout and back in, for your user to be added to the www-data group, but probably not."

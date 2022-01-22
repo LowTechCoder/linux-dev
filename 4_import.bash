@@ -34,7 +34,7 @@ sudo systemctl start apache2.service
 
 #copy local config to backup
 cp "$WEB_FILES/wp-config.php" "$WEB_FILES/wp-config-backup.php"
-#copy remote files into local
+echo "Copy remote files into local..."
 cp -r import/$L_SITE_LOC/* "$WEB_FILES/"
 #overwrite remote config
 cp "$WEB_FILES/wp-config-backup.php" "$WEB_FILES/wp-config.php"
@@ -43,6 +43,7 @@ sed -i "$LINE_NUM"'s#wp#'"$PREFIX"'#g' "$WEB_FILES/wp-config.php"
 
 cd import
 DB_OUTPUT="$DB.output.sql"
+echo "Replacing remote domain for local in DB..."
 sed "s#https://www.$R_SITE#https://$L_SITE_LOC#g" "$DB.sql" > "$DB_OUTPUT"
 sed -i "s#http://www.$R_SITE#https://$L_SITE_LOC#g" "$DB_OUTPUT"
 sed -i "s#https://$R_SITE#https://$L_SITE_LOC#g" "$DB_OUTPUT"
@@ -50,10 +51,11 @@ sed -i "s#http://$R_SITE#https://$L_SITE_LOC#g" "$DB_OUTPUT"
 sed -i "s#$R_SITE#$L_SITE_LOC#g" "$DB_OUTPUT"
 
 PROJECT="$L_SITE"
+echo "Doing remote DB import..."
 sed -i 's/\sDEFINER=`[^`]*`@`[^`]*`//g' "$DB_OUTPUT"
-sudo mysql -u root -p -e "drop database $DB"
-sudo mysql -u root -p -e "create database $DB"
-sudo mysql -u root -p $DB < "$DB_OUTPUT"
+sudo mysql -u root -Bse "drop database $DB"
+sudo mysql -u root -Bse "create database $DB"
+sudo mysql -u root -Bs $DB < "$DB_OUTPUT"
 
 echo "DB output file: $DB_OUTPUT"
 cd ..
@@ -63,19 +65,16 @@ rm -r "$WEB_FILES/wp-content/plugins/wps-hide-login/"
 
 # change all files to 664
 sudo find "/var/www" -type f -exec chmod 664 {} + 
-
 # change all folders to 775
 sudo find "/var/www" -type d -exec chmod 775 {} +
-
 # add user to www-data
 sudo adduser $USER www-data
-
 # change user:group
 sudo chown -R www-data:www-data '/var/www'
-
+# make writable to all in group
 sudo chmod -R g+rwX '/var/www'
-
 echo "All done.  You may need to logout and back in, for your user to be added to the www-data group, but probably not."
+
 echo
 echo "Useful links and paths:"
 echo

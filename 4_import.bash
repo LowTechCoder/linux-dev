@@ -17,7 +17,8 @@ read -p "Enter remote site name (example.com): " R_SITE;
 read -p "Enter local site name without the '.loc': " L_SITE;
 #read -p "Enter DB PW: " DB_PW; #do we need this?
 read -r -p "Are these correct? [y/N] " response
-read -p "Enter wp-config.php prefix without the trailing underscore. (wp): " PREFIX;
+PREFIX=$(cat "import/$L_SITE_LOC/wp-config.php" | grep "table_prefix" | sed "s#'##g" | sed 's# ##g' | sed 's#^.*=##g' | sed 's#_.*##g')
+#read -p "Enter wp-config.php prefix without the trailing underscore. (wp): " PREFIX;
 read -r -p "Are these correct? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
 then
@@ -58,15 +59,6 @@ sudo mysql -u root -p $DB < "$DB_OUTPUT"
 
 echo "DB output file: $DB_OUTPUT"
 cd ..
-
-# do this again for some reason...
-sudo chgrp -R www-data /var/www/html
-sudo chown -R $USER /var/www/html/
-sudo find /var/www/html -type d -exec chmod u+rwx {} +
-sudo find /var/www/html -type f -exec chmod u+rw {} +
-
-sudo find /var/www/html -type d -exec chmod 755 {} \;
-sudo find /var/www/html -type f -exec chmod 644 {} \;
 
 #deleting the wps-hide-login, if there is one.
 sudo rm -r "$WEB_FILES/wp-content/plugins/wps-hide-login/"

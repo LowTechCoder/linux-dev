@@ -33,11 +33,11 @@ sudo systemctl start apache2.service
 
 
 #copy local config to backup
-cp "$WEB_FILES/wp-config.php" "$WEB_FILES/wp-config-backup.php"
+sudo cp "$WEB_FILES/wp-config.php" "$WEB_FILES/wp-config-backup.php"
 echo "Copy remote files into local..."
-cp -r import/$L_SITE_LOC/* "$WEB_FILES/"
+sudo cp -r import/$L_SITE_LOC/* "$WEB_FILES/"
 #overwrite remote config
-cp "$WEB_FILES/wp-config-backup.php" "$WEB_FILES/wp-config.php"
+sudo cp "$WEB_FILES/wp-config-backup.php" "$WEB_FILES/wp-config.php"
 LINE_NUM=$(grep -n "table_prefix" "$WEB_FILES/wp-config.php" | awk -F  ":" '{print $1}')
 sed -i "$LINE_NUM"'s#wp#'"$PREFIX"'#g' "$WEB_FILES/wp-config.php"
 
@@ -61,7 +61,7 @@ echo "DB output file: $DB_OUTPUT"
 cd ..
 
 #deleting the wps-hide-login, if there is one.
-rm -r "$WEB_FILES/wp-content/plugins/wps-hide-login/"
+sudo rm -r "$WEB_FILES/wp-content/plugins/wps-hide-login/"
 
 # change all files to 664
 sudo find "/var/www" -type f -exec chmod 664 {} + 

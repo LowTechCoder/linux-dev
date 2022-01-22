@@ -27,14 +27,14 @@ cd temp
 wget https://wordpress.org/latest.zip
 unzip -q latest.zip
 cd ..
-cp -r temp/wordpress/ ./$L_SITE_LOC
-bash -c "echo '<?php phpinfo(); ?>' > /var/www/html/$L_SITE_LOC/info.php"
+sudo cp -r temp/wordpress/ ./$L_SITE_LOC
+sudo bash -c "echo '<?php phpinfo(); ?>' > /var/www/html/$L_SITE_LOC/info.php"
 cd "$L_SITE_LOC/"
-cp wp-config-sample.php wp-config.php
-sed -i "s#database_name_here#$DB#g" wp-config.php
-sed -i "s#username_here#$DB#g" wp-config.php
-sed -i "s#password_here#$DB_PW#g" wp-config.php
-cp wp-config.php wp-config-add_site_backup.php
+sudo cp wp-config-sample.php wp-config.php
+sudo sed -i "s#database_name_here#$DB#g" wp-config.php
+sudo sed -i "s#username_here#$DB#g" wp-config.php
+sudo sed -i "s#password_here#$DB_PW#g" wp-config.php
+sudo cp wp-config.php wp-config-add_site_backup.php
 
 # -- hosts file
 sudo bash -c "echo '127.0.0.1 $L_SITE_LOC' >> /etc/hosts"

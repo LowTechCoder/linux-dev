@@ -61,12 +61,6 @@ sudo a2ensite $L_SITE_LOC.conf
 #sudo ufw allow "Apache Full"
 sudo systemctl reload apache2
 
-# do this again for some reason...
-sudo chgrp -R www-data /var/www/html
-sudo chown -R $USER /var/www/html/
-sudo find /var/www/html -type d -exec chmod u+rwx {} +
-sudo find /var/www/html -type f -exec chmod u+rw {} +
-
 echo "https://$L_SITE_LOC/wp-admin/install.php"
 echo "https://$L_SITE_LOC/info.php"
 echo "The username for phpmyadmin is: phpmyadmin"

@@ -15,10 +15,11 @@ read
 
 read -p "Enter remote site name (example.com): " R_SITE;
 read -p "Enter local site name without the '.loc': " L_SITE;
-#read -p "Enter DB PW: " DB_PW; #do we need this?
-read -r -p "Are these correct? [y/N] " response
+DB="$L_SITE"
+L_SITE_LOC="$L_SITE.loc"
+WEB_FILES="/var/www/html/$L_SITE_LOC"
 PREFIX=$(cat "import/$L_SITE_LOC/wp-config.php" | grep "table_prefix" | sed "s#'##g" | sed 's# ##g' | sed 's#^.*=##g' | sed 's#_.*##g')
-#read -p "Enter wp-config.php prefix without the trailing underscore. (wp): " PREFIX;
+echo "Using prefix: $PREFIX"
 read -r -p "Are these correct? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
 then
@@ -30,9 +31,6 @@ fi
 echo "Starting Apache..."
 sudo systemctl start apache2.service
 
-DB="$L_SITE"
-L_SITE_LOC="$L_SITE.loc"
-WEB_FILES="/var/www/html/$L_SITE_LOC"
 
 #copy local config to backup
 sudo cp "$WEB_FILES/wp-config.php" "$WEB_FILES/wp-config-backup.php"

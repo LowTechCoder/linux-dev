@@ -2,7 +2,6 @@ echo "Before we begin:"
 echo "Run this script from ~/linux-dev"
 echo "Place the plugins.zip file in this directory:"
 echo "~/linux-dev/import/"
-echo "Inside the plugins.zip file should be a directory called 'plugins', that is filled with the plugins directories."
 echo "Local site list:"
 ls "/var/www/html/"
 echo "Hit ENTER to continue..."
@@ -23,14 +22,12 @@ fi
 cd /var/www/html/
 if [ -d "temp" ] 
 then
-    echo "temp rm"
     sudo rm -r temp
 fi
 mkdir temp
 cd temp
 sudo cp "$HOME/linux-dev/import/plugins.zip" "/var/www/html/temp/"
 sudo unzip -q plugins.zip
-    echo "plugins rm"
 sudo rm -r plugins.zip
 if [ -d "plugins" ] 
 then

@@ -1,0 +1,2 @@
+For a site Import:
+Make sure the site files are in a folder, and the parent directory is named the same as the local dev site directory (example.loc) and located in this directory.
